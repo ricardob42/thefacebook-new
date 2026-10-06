@@ -1,0 +1,13 @@
+{
+  "name":"thefacebook",
+  "short_name":"thefacebook",
+  "description":"A simple personal history.",
+  "start_url":"./index.html",
+  "scope":"./",
+  "display":"standalone",
+  "orientation":"any",
+  "background_color":"#101820",
+  "theme_color":"#0b2f57",
+  "categories":["lifestyle","personal"],
+  "icons":[{"src":"./assets/icons/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}]
+}
