@@ -30,6 +30,11 @@ export function streak(list) {
   return run;
 }
 
+export function wroteToday(list) {
+  const today = todayISO();
+  return list.some((e) => e.date === today);
+}
+
 export function streakTier(days) {
   if (days >= 200) return 5;
   if (days >= 100) return 4;
