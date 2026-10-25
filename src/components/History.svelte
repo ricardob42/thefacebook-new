@@ -1,7 +1,8 @@
 <script>
   import { entries, remove } from '../lib/entries.svelte.js';
-  import { wordCount, streak, monthLabel } from '../lib/stats.js';
+  import { wordCount, streak, streakTier, monthLabel } from '../lib/stats.js';
   import Entry from './Entry.svelte';
+  import Flame from './Flame.svelte';
 
   let { onedit, onpublish } = $props();
 
@@ -10,6 +11,7 @@
 
   const totalWords = $derived(entries.list.reduce((sum, e) => sum + wordCount(e.body), 0));
   const days = $derived(streak(entries.list));
+  const tier = $derived(streakTier(days));
 
   const visible = $derived.by(() => {
     const q = query.trim().toLowerCase();
@@ -48,7 +50,10 @@
     <dl class="stats">
       <div><dt>{entries.list.length === 1 ? 'Entry' : 'Entries'}</dt><dd>{entries.list.length}</dd></div>
       <div><dt>Words</dt><dd>{totalWords.toLocaleString()}</dd></div>
-      <div><dt>Day streak</dt><dd>{days}</dd></div>
+      <div class="streak" data-tier={tier}>
+        <dt>Day streak</dt>
+        <dd><Flame lit={tier > 0} /><span>{days}</span></dd>
+      </div>
     </dl>
 
     <input class="search" type="search" placeholder="Search your history" bind:value={query} />
@@ -144,6 +149,17 @@
     font-weight: 600;
     line-height: 1.1;
     letter-spacing: -0.03em;
+  }
+
+  .streak dd {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .streak dd span {
+    color: var(--flame-num);
+    transition: color 0.4s;
   }
 
   .stats dt {

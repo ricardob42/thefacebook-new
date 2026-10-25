@@ -30,6 +30,42 @@
   color-scheme: light;
 }
 
+[data-tier='0'] {
+  --flame-top: #a3abbc;
+  --flame-bottom: #6f7a90;
+  --flame-num: var(--muted);
+}
+
+[data-tier='1'] {
+  --flame-top: #ffc93d;
+  --flame-bottom: #ff8a00;
+  --flame-num: #ff9a1f;
+}
+
+[data-tier='2'] {
+  --flame-top: #ffa233;
+  --flame-bottom: #f4560a;
+  --flame-num: #ff6a1f;
+}
+
+[data-tier='3'] {
+  --flame-top: #ff6f50;
+  --flame-bottom: #e5302f;
+  --flame-num: #ff4d44;
+}
+
+[data-tier='4'] {
+  --flame-top: #ff5fd6;
+  --flame-bottom: #c01fd0;
+  --flame-num: #e046e8;
+}
+
+[data-tier='5'] {
+  --flame-top: #c9a8ff;
+  --flame-bottom: #8b4cf0;
+  --flame-num: #a97bff;
+}
+
 *,
 *::before,
 *::after {
