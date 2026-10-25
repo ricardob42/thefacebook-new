@@ -30,6 +30,14 @@ export function streak(list) {
   return run;
 }
 
+export function streakTier(days) {
+  if (days >= 200) return 5;
+  if (days >= 100) return 4;
+  if (days >= 30) return 3;
+  if (days >= 10) return 2;
+  return days > 0 ? 1 : 0;
+}
+
 export function longDate(iso) {
   const [y, m, d] = iso.split('-').map(Number);
   return new Date(y, m - 1, d).toLocaleDateString(undefined, {
