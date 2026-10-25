@@ -4,7 +4,7 @@
   const LAST = 'thefacebook-last-backup';
 
   let input;
-  let pending = $state(null);
+  let pending = $state.raw(null);
   let message = $state('');
   let failed = $state(false);
   let lastBackup = $state(localStorage.getItem(LAST));
