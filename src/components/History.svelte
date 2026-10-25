@@ -1,6 +1,6 @@
 <script>
   import { entries, remove } from '../lib/entries.svelte.js';
-  import { wordCount, streak, streakTier, monthLabel } from '../lib/stats.js';
+  import { wordCount, streak, streakTier, wroteToday, monthLabel } from '../lib/stats.js';
   import Entry from './Entry.svelte';
   import Flame from './Flame.svelte';
 
@@ -11,7 +11,8 @@
 
   const totalWords = $derived(entries.list.reduce((sum, e) => sum + wordCount(e.body), 0));
   const days = $derived(streak(entries.list));
-  const tier = $derived(streakTier(days));
+  const lit = $derived(days > 0 && wroteToday(entries.list));
+  const tier = $derived(lit ? streakTier(days) : 0);
 
   const visible = $derived.by(() => {
     const q = query.trim().toLowerCase();
@@ -52,7 +53,7 @@
       <div><dt>Words</dt><dd>{totalWords.toLocaleString()}</dd></div>
       <div class="streak" data-tier={tier}>
         <dt>Day streak</dt>
-        <dd><Flame lit={tier > 0} /><span>{days}</span></dd>
+        <dd><Flame {lit} /><span>{days}</span></dd>
       </div>
     </dl>
 
